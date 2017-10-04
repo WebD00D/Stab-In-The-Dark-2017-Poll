@@ -2,6 +2,9 @@ body, html {
   margin: 0;
   padding: 0; }
 
+.d-none {
+  display: none; }
+
 .navigation {
   display: flex;
   justify-content: space-between;
@@ -39,18 +42,27 @@ body, html {
   margin-top: 100px;
   padding-left: 18px;
   padding-right: 18px;
-  padding-bottom: 18px; }
+  padding-bottom: 100px; }
 
 .page-title {
   font-family: "Roboto", sans-serif;
   font-size: 36px;
   font-weight: 600;
   margin-bottom: 22px; }
+  @media (max-width: 700px) {
+    .page-title {
+      font-size: 28px; } }
 
 .page-subtitle {
   font-family: "PT Serif", serif;
   font-size: 18px;
   margin-bottom: 22px; }
+  @media (max-width: 700px) {
+    .page-subtitle {
+      font-size: 18px; } }
+
+.results {
+  padding-top: 36px; }
 
 .result {
   display: flex;
@@ -81,3 +93,86 @@ body, html {
     background-color: white;
     padding-left: 12px;
     z-index: 1; }
+
+.shaper-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #808080; }
+
+.shaper-entries {
+  max-height: 400px;
+  overflow: scroll; }
+
+.shaper-entry {
+  width: 100%;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 48px; }
+
+.email-entry {
+  font-family: "PT Serif", serif;
+  font-size: 18px; }
+
+.scroll-down {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  letter-spacing: .5px;
+  font-size: 12px; }
+  .scroll-down span {
+    margin-bottom: 6px; }
+
+.back-button {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  letter-spacing: .5px;
+  font-size: 12px; }
+  .back-button:hover {
+    cursor: pointer; }
+  .back-button span {
+    margin-left: 6px; }
+
+button {
+  margin-top: 22px;
+  height: 45px;
+  font-size: 16px;
+  width: 240px;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.5px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  transition: .2s ease; }
+  button:hover {
+    cursor: pointer;
+    opacity: 0.8; }
+  button:focus {
+    outline: none; }
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  @media (max-width: 600px) {
+    .button-container {
+      flex-direction: column;
+      align-items: flex-start; } }
+
+.winner {
+  color: #0E7824;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 16px; }
+  @media (max-width: 600px) {
+    .winner {
+      margin-top: 22px; } }
