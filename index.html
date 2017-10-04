@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stab in the Dark 2017 | Contest Results</title>
+  <meta name="author" content="Stab Magazine">
+  <meta name="description" content="Stab in the Dark 2017 Contest">
+  <meta name="keywords" content="stabmag, stab, magazine, surfing, surfboards, jordy, smith">
+  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"> -->
+  <link href="static/css/style.css" type="text/css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto:500,700" rel="stylesheet">
+  <script src="https://use.fontawesome.com/9aa665cf7f.js"></script>
+  </head>
+  <body>
+
+
+  <div class="page" data-email="">
+
+
+    <div class="navigation">
+      <div class="navigation__left">
+        <div class="logo-bg"><img src="/static/img/StabLogoWhite.png" /></div>
+        <div class="site-title">STAB IN THE DARK 2017</div>
+      </div>
+      <div class="navigation__right">
+        <div class="site-title">SIGN OUT</div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="page-title">Reader's Choice Poll Results</div>
+      <div class="page-subtitle">Select a shaper to view reader selection list, and draw a random winner.</div>
+
+      <div class="results">
+
+        <div class="result">
+          <div class="result__name">Matt "Mayhem" Biolos</div>
+          <div class="result__line"></div>
+          <div id="MattBiolos" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Rusty Preisendorfer</div>
+          <div class="result__line"></div>
+          <div id="Rusty" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Jason Stevenson</div>
+          <div class="result__line"></div>
+          <div id="JasonStevenson" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Graham Smith</div>
+          <div class="result__line"></div>
+          <div id="GrahamSmith" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Darren Handley</div>
+          <div class="result__line"></div>
+          <div id="DarrenHandley" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Lee Stacey</div>
+          <div class="result__line"></div>
+          <div id="LeeStacey" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Jon Pyzel</div>
+          <div class="result__line"></div>
+          <div id="JonPyzel" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Hayden Cox</div>
+          <div class="result__line"></div>
+          <div id="HaydenCox" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Christiaan Bradley</div>
+          <div class="result__line"></div>
+          <div id="ChristiaanBradley" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">James Cheal</div>
+          <div class="result__line"></div>
+          <div id="JamesCheal" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Johnny Cabianca</div>
+          <div class="result__line"></div>
+          <div id="JohnnyCabianca" class="result__count"></div>
+        </div>
+
+        <div class="result">
+          <div class="result__name">Simon Anderson</div>
+          <div class="result__line"></div>
+          <div id="SimonAnderson" class="result__count"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div> <!-- end page -->
+
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+  <script>
+window.addEventListener("load", function(event) {
+  // TODO: On page load.. get all the current poll results, and bind changes.
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyClVUDaals4XX2qCox561okBfZRXDNUZ4o",
+    authDomain: "stabinthedark2017.firebaseapp.com",
+    databaseURL: "https://stabinthedark2017.firebaseio.com",
+    projectId: "stabinthedark2017",
+    storageBucket: "stabinthedark2017.appspot.com",
+    messagingSenderId: "687257526210"
+  };
+  firebase.initializeApp(config);
+
+  getCurrentPollData()
+  function getCurrentPollData() {
+
+    var mattBiolosRef = firebase.database().ref('responses/Matt Biolos');
+    mattBiolosRef.on('value', function(snapshot) {
+      var mattBiolosCount = _.size(snapshot.val())
+      document.getElementById("MattBiolos").innerHTML = mattBiolosCount;
+    });
+
+    var rustyRef = firebase.database().ref('responses/Rusty Preisendorfer');
+    rustyRef.on('value', function(snapshot) {
+      var rustyCount = _.size(snapshot.val())
+      document.getElementById("Rusty").innerHTML = rustyCount;
+    });
+
+    var jasonStevensonRef = firebase.database().ref('responses/Jason Stevenson');
+    jasonStevensonRef.on('value', function(snapshot) {
+      var jasonRef = _.size(snapshot.val())
+      document.getElementById("JasonStevenson").innerHTML = jasonRef;
+    });
+
+    var GrahamSmith = firebase.database().ref('responses/Graham Smith');
+    GrahamSmith.on('value', function(snapshot) {
+      var GrahamSmithCount = _.size(snapshot.val())
+      document.getElementById("GrahamSmith").innerHTML = GrahamSmithCount;
+    });
+
+    var HaydenCox = firebase.database().ref('responses/Hayden Cox');
+    HaydenCox.on('value', function(snapshot) {
+      var HaydenCoxCount = _.size(snapshot.val())
+      document.getElementById("HaydenCox").innerHTML = HaydenCoxCount;
+    });
+
+    var DarrenHandley = firebase.database().ref('responses/Darren Handley');
+    DarrenHandley.on('value', function(snapshot) {
+      var DarrenHandleyCount = _.size(snapshot.val())
+      document.getElementById("DarrenHandley").innerHTML = DarrenHandleyCount;
+    });
+
+    var LeeStacey = firebase.database().ref('responses/Lee Stacey');
+    LeeStacey.on('value', function(snapshot) {
+      var LeeStaceyCount = _.size(snapshot.val())
+      document.getElementById("LeeStacey").innerHTML = LeeStaceyCount;
+    });
+
+    var JonPyzel = firebase.database().ref('responses/Jon Pyzel');
+    JonPyzel.on('value', function(snapshot) {
+      var JonPyzelCount = _.size(snapshot.val())
+      document.getElementById("JonPyzel").innerHTML = JonPyzelCount;
+    });
+
+    var ChristiaanBradley = firebase.database().ref('responses/Christiaan Bradley');
+    ChristiaanBradley.on('value', function(snapshot) {
+      var ChristiaanBradleyCount = _.size(snapshot.val())
+      document.getElementById("ChristiaanBradley").innerHTML = ChristiaanBradleyCount;
+    });
+
+    var JamesCheal = firebase.database().ref('responses/James Cheal');
+    JamesCheal.on('value', function(snapshot) {
+      var JamesChealCount = _.size(snapshot.val())
+      document.getElementById("JamesCheal").innerHTML = JamesChealCount;
+    });
+
+    var JohnnyCabianca = firebase.database().ref('responses/JohnnyC');
+    JohnnyCabianca.on('value', function(snapshot) {
+      var JohnnyCabiancaCount = _.size(snapshot.val())
+      document.getElementById("JohnnyCabianca").innerHTML = JohnnyCabiancaCount;
+    });
+
+    var SimonAnderson = firebase.database().ref('responses/Simon Anderson');
+    SimonAnderson.on('value', function(snapshot) {
+      var SimonAndersonCount = _.size(snapshot.val())
+      document.getElementById("SimonAnderson").innerHTML = SimonAndersonCount;
+    });
+
+
+
+
+  }
+
+
+
+
+});
+</script>
+
+
+  </body>
+</html>
