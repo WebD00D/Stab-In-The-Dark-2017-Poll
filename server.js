@@ -43,6 +43,14 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/southern-hemi", function(req, res) {
+  res.sendFile(__dirname + "/southern-hemi.html");
+});
+
+app.get("/shared-list", function(req, res) {
+  res.sendFile(__dirname + "/southern-hemi.html");
+});
+
 // app.post('*' (res, req) => {
 //   console.log('body: ', req.body)
 //   console.log('query: ', req.query)
@@ -86,7 +94,8 @@ app.post("/sumbit-survey", function(request, res) {
     .database()
     .ref("responses/" + shaper + "/" + timeStamp)
     .set({
-      email: email
+      email: email,
+        social: social
     });
 
 

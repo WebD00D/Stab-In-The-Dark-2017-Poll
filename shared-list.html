@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stab in the Dark 2017 | Contest Results</title>
+  <meta name="author" content="Stab Magazine">
+  <meta name="description" content="Stab in the Dark 2017 Contest">
+  <meta name="keywords" content="stabmag, stab, magazine, surfing, surfboards, jordy, smith">
+  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"> -->
+  <link href="static/css/style.css" type="text/css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto:500,700" rel="stylesheet">
+  <script src="https://use.fontawesome.com/9aa665cf7f.js"></script>
+  </head>
+  <body>
+
+
+  <div class="page" data-email="">
+
+
+    <div class="navigation">
+      <div class="navigation__left">
+        <div class="logo-bg"><img src="/static/img/StabLogoWhite.png" /></div>
+        <div class="site-title">STAB IN THE DARK 2017</div>
+      </div>
+      <div class="navigation__right">
+        <a href="/"><div class="site-title" style="opacity:0.3">NORTHERN</div></a>
+        <a href="/southern-hemi"><div class="site-title" style="opacity:0.3">SOUTHERN</div></a>
+        <a href="/shared-list"><div class="site-title" >SOCIAL SHARING</div></a>
+      </div>
+      <div id="mobile-nav" class="mobile-nav"><i class="fa fa-bars"></i></div>
+      <div id="mobile-menu" class="mobile-menu d-none">
+        <a href="/"><div class="site-title" style="opacity:0.3">NORTHERN</div></a>
+        <a href="/southern-hemi"><div class="site-title" style="opacity:0.3">SOUTHERN</div></a>
+        <a href="/shared-list"><div class="site-title" >SOCIAL SHARING</div></a>
+      </div>
+    </div>
+
+
+    <div id="northern" class="container">
+      <div class="page-title">Northern Hemisphere</div>
+      <div class="page-subtitle" >List of folks from the Northern Hemisphere who felt like sharing.</div>
+      <div id="northern-list" class="shaper-entries"></div>
+    </div>
+
+    <div id="southern" class="container">
+      <div class="page-title">Southern Hemisphere</div>
+      <div class="page-subtitle" >List of folks from the Southern Hemisphere who felt like sharing.</div>
+      <div id="southern-list" class="shaper-entries"></div>
+    </div>
+
+
+
+
+
+  </div> <!-- end page -->
+
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+  <script>
+window.addEventListener("load", function(event) {
+  // TODO: On page load.. get all the current poll results, and bind changes.
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyClVUDaals4XX2qCox561okBfZRXDNUZ4o",
+    authDomain: "stabinthedark2017.firebaseapp.com",
+    databaseURL: "https://stabinthedark2017.firebaseio.com",
+    projectId: "stabinthedark2017",
+    storageBucket: "stabinthedark2017.appspot.com",
+    messagingSenderId: "687257526210"
+  };
+  firebase.initializeApp(config);
+
+  document.getElementById("mobile-nav").onclick = function() {
+    if ( document.getElementById("mobile-menu").classList.contains("d-none") ) {
+      document.getElementById("mobile-menu").classList.remove("d-none");
+    } else {
+        document.getElementById("mobile-menu").classList.add("d-none");
+    }
+  }
+
+
+
+  var northern = firebase.database().ref("shared/" );
+  northern.on("value", function(snapshot) {
+
+    var northernEntries = document.getElementById("northern-list");
+    northernEntries.innerHTML = "";
+
+    _.forEach(snapshot.val(), function(value) {
+      console.log(value.email);
+
+      var markup = `<div class="shaper-entry shaper-entry--list"><div class="email-entry email-entry--sm">${value.email}</div><div class="email-entry email-entry--sm">${value.social}</div><div class="email-entry email-entry--sm">${value.type}</div></div>`;
+      northernEntries.innerHTML += markup;
+    });
+  });
+
+  var southern = firebase.database().ref("southern-shared/" );
+  southern.on("value", function(snapshot) {
+
+    var southernEntries = document.getElementById("southern-list");
+    southernEntries.innerHTML = "";
+
+    _.forEach(snapshot.val(), function(value) {
+      console.log(value.email);
+
+      var markup = `<div class="shaper-entry shaper-entry--list"><div class="email-entry email-entry--sm">${value.email}</div><div class="email-entry email-entry--sm">${value.social}</div><div class="email-entry email-entry--sm">${value.type}</div></div>`;
+      southernEntries.innerHTML += markup;
+    });
+  });
+
+
+});
+</script>
+
+
+  </body>
+</html>

@@ -25,14 +25,14 @@
         <div class="site-title">STAB IN THE DARK 2017</div>
       </div>
       <div class="navigation__right">
-        <a href="/"><div class="site-title">NORTHERN</div></a>
-        <a href="/southern-hemi"><div class="site-title" style="opacity:0.3">SOUTHERN</div></a>
+        <a href="/"><div class="site-title" style="opacity:0.3">NORTHERN</div></a>
+        <a href="/southern-hemi"><div class="site-title">SOUTHERN</div></a>
         <a href="/shared-list"><div class="site-title" style="opacity:0.3">SOCIAL SHARING</div></a>
       </div>
       <div id="mobile-nav" class="mobile-nav"><i class="fa fa-bars"></i></div>
       <div id="mobile-menu" class="mobile-menu d-none">
-        <a href="/"><div class="site-title">NORTHERN</div></a>
-        <a href="/southern-hemi"><div class="site-title" style="opacity:0.3">SOUTHERN</div></a>
+        <a href="/"><div class="site-title" style="opacity:0.3">NORTHERN</div></a>
+        <a href="/southern-hemi"><div class="site-title" >SOUTHERN</div></a>
         <a href="/shared-list"><div class="site-title" style="opacity:0.3">SOCIAL SHARING</div></a>
       </div>
     </div>
@@ -47,7 +47,7 @@
         <div id="shaperCount" class="page-title"></div>
       </div>
 
-    <div id="shaper-entries" class="shaper-entries" ></div>
+    <div id="shaper-entries" class="shaper-entries"></div>
     <div class="add-to-list">
       <div style="width:75%">
       <input id="list_email" placeholder="Email" type="text" />
@@ -61,11 +61,13 @@
       <div id="winnerEmail" class="winner"></div>
     </div>
 
+
+
     </div>
 
     <div id="shapers" class="container">
 
-      <div class="page-title">Northern Hemisphere</div>
+      <div class="page-title">Southern Hemisphere</div>
       <div class="page-subtitle" >Select a shaper to view reader selection list, and draw a random winner.</div>
 
       <div class="results">
@@ -144,8 +146,6 @@
 
       </div>
 
-
-
     </div>
 
 
@@ -191,7 +191,7 @@ window.addEventListener("load", function(event) {
 
     console.log(email,social,timeStamp)
 
-    firebase.database().ref("responses/"+ shaper + "/" + timeStamp).set({email: email, social: social});
+    firebase.database().ref("southern-hemisphere-responses/"+ shaper + "/" + timeStamp).set({email: email, social: social});
 
     document.getElementById("list_email").value = ""
     document.getElementById("list_social").value = ""
@@ -211,7 +211,7 @@ window.addEventListener("load", function(event) {
     document.getElementById("winnerEmail").innerHTML = '...';
 
 
-    firebase.database().ref('responses/' + shaperName).once('value').then(function(snapshot) {
+    firebase.database().ref('southern-hemisphere-responses/' + shaperName).once('value').then(function(snapshot) {
       var entries = snapshot.val();
       var random = _.sample(entries);
       document.getElementById("winnerEmail").innerHTML = random.email;
@@ -237,7 +237,7 @@ window.addEventListener("load", function(event) {
       document.getElementById("shaperName").innerHTML = shaperName;
     }
 
-    var shaperEmailsRef = firebase.database().ref("responses/" + shaperName);
+    var shaperEmailsRef = firebase.database().ref("southern-hemisphere-responses/" + shaperName);
     shaperEmailsRef.on("value", function(snapshot) {
       document.getElementById("shaperCount").innerHTML = _.size(snapshot.val());
       var shaperEntries = document.getElementById("shaper-entries");
@@ -257,13 +257,13 @@ window.addEventListener("load", function(event) {
 
   getCurrentPollData();
   function getCurrentPollData() {
-    var mattBiolosRef = firebase.database().ref("responses/Matt Biolos");
+    var mattBiolosRef = firebase.database().ref("southern-hemisphere-responses/Matt Biolos");
     mattBiolosRef.on("value", function(snapshot) {
       var mattBiolosCount = _.size(snapshot.val());
       document.getElementById("MattBiolos").innerHTML = mattBiolosCount;
     });
 
-    var rustyRef = firebase.database().ref("responses/Rusty Preisendorfer");
+    var rustyRef = firebase.database().ref("southern-hemisphere-responses/Rusty Preisendorfer");
     rustyRef.on("value", function(snapshot) {
       var rustyCount = _.size(snapshot.val());
       document.getElementById("Rusty").innerHTML = rustyCount;
@@ -271,37 +271,37 @@ window.addEventListener("load", function(event) {
 
     var jasonStevensonRef = firebase
       .database()
-      .ref("responses/Jason Stevenson");
+      .ref("southern-hemisphere-responses/Jason Stevenson");
     jasonStevensonRef.on("value", function(snapshot) {
       var jasonRef = _.size(snapshot.val());
       document.getElementById("JasonStevenson").innerHTML = jasonRef;
     });
 
-    var GrahamSmith = firebase.database().ref("responses/Graham Smith");
+    var GrahamSmith = firebase.database().ref("southern-hemisphere-responses/Graham Smith");
     GrahamSmith.on("value", function(snapshot) {
       var GrahamSmithCount = _.size(snapshot.val());
       document.getElementById("GrahamSmith").innerHTML = GrahamSmithCount;
     });
 
-    var HaydenCox = firebase.database().ref("responses/Hayden Cox");
+    var HaydenCox = firebase.database().ref("southern-hemisphere-responses/Hayden Cox");
     HaydenCox.on("value", function(snapshot) {
       var HaydenCoxCount = _.size(snapshot.val());
       document.getElementById("HaydenCox").innerHTML = HaydenCoxCount;
     });
 
-    var DarrenHandley = firebase.database().ref("responses/Darren Handley");
+    var DarrenHandley = firebase.database().ref("southern-hemisphere-responses/Darren Handley");
     DarrenHandley.on("value", function(snapshot) {
       var DarrenHandleyCount = _.size(snapshot.val());
       document.getElementById("DarrenHandley").innerHTML = DarrenHandleyCount;
     });
 
-    var LeeStacey = firebase.database().ref("responses/Lee Stacey");
+    var LeeStacey = firebase.database().ref("southern-hemisphere-responses/Lee Stacey");
     LeeStacey.on("value", function(snapshot) {
       var LeeStaceyCount = _.size(snapshot.val());
       document.getElementById("LeeStacey").innerHTML = LeeStaceyCount;
     });
 
-    var JonPyzel = firebase.database().ref("responses/Jon Pyzel");
+    var JonPyzel = firebase.database().ref("southern-hemisphere-responses/Jon Pyzel");
     JonPyzel.on("value", function(snapshot) {
       var JonPyzelCount = _.size(snapshot.val());
       document.getElementById("JonPyzel").innerHTML = JonPyzelCount;
@@ -309,7 +309,7 @@ window.addEventListener("load", function(event) {
 
     var ChristiaanBradley = firebase
       .database()
-      .ref("responses/Christiaan Bradley");
+      .ref("southern-hemisphere-responses/Christiaan Bradley");
     ChristiaanBradley.on("value", function(snapshot) {
       var ChristiaanBradleyCount = _.size(snapshot.val());
       document.getElementById(
@@ -317,19 +317,19 @@ window.addEventListener("load", function(event) {
       ).innerHTML = ChristiaanBradleyCount;
     });
 
-    var JamesCheal = firebase.database().ref("responses/James Cheal");
+    var JamesCheal = firebase.database().ref("southern-hemisphere-responses/James Cheal");
     JamesCheal.on("value", function(snapshot) {
       var JamesChealCount = _.size(snapshot.val());
       document.getElementById("JamesCheal").innerHTML = JamesChealCount;
     });
 
-    var JohnnyCabianca = firebase.database().ref("responses/JohnnyC");
+    var JohnnyCabianca = firebase.database().ref("southern-hemisphere-responses/JohnnyC");
     JohnnyCabianca.on("value", function(snapshot) {
       var JohnnyCabiancaCount = _.size(snapshot.val());
       document.getElementById("JohnnyCabianca").innerHTML = JohnnyCabiancaCount;
     });
 
-    var SimonAnderson = firebase.database().ref("responses/Simon Anderson");
+    var SimonAnderson = firebase.database().ref("southern-hemisphere-responses/Simon Anderson");
     SimonAnderson.on("value", function(snapshot) {
       var SimonAndersonCount = _.size(snapshot.val());
       document.getElementById("SimonAnderson").innerHTML = SimonAndersonCount;
