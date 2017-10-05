@@ -48,7 +48,7 @@ app.get("/southern-hemi", function(req, res) {
 });
 
 app.get("/shared-list", function(req, res) {
-  res.sendFile(__dirname + "/southern-hemi.html");
+  res.sendFile(__dirname + "/shared-list.html");
 });
 
 // app.post('*' (res, req) => {
