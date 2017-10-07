@@ -9,6 +9,9 @@ a {
   text-decoration: none;
   color: black; }
 
+.t-copy {
+  font-family: "PT Serif", serif; }
+
 .navigation {
   position: relative;
   display: flex;

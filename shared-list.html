@@ -41,7 +41,7 @@
     <div id="northern" class="container">
       <div class="page-title">Northern Hemisphere</div>
       <div class="page-subtitle" >List of folks from the Northern Hemisphere who felt like sharing.</div>
-      <div id="northern-list" class="shaper-entries"></div>
+      <div id="northern-list" class="shaper-entries"><div class="t-copy">Loading...</div></div>
     </div>
 
     <div id="southern" class="container">
@@ -90,7 +90,7 @@ window.addEventListener("load", function(event) {
     northernEntries.innerHTML = "";
 
     _.forEach(snapshot.val(), function(value) {
-      console.log(value.email);
+
 
       var markup = `<div class="shaper-entry shaper-entry--list"><div class="email-entry email-entry--sm">${value.email}</div><div class="email-entry email-entry--sm">${value.social}</div><div class="email-entry email-entry--sm">${value.type}</div></div>`;
       northernEntries.innerHTML += markup;
