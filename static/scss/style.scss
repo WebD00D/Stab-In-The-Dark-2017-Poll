@@ -7,7 +7,7 @@ $t-title: 'Roboto', sans-serif;
 $t-copy: 'PT Serif', serif;
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 a {
